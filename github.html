@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Players</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        th {
+            background-color: #ff4500;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Jugadores de la NBA</h1>
+
+    <table id="nbaTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Equipo</th>
+                <th>Puntos por partido</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas generadas por JavaScript -->
+        </tbody>
+    </table>
+
+    <button onclick="agregarJugador()">Agregar jugador</button>
+
+    <script>
+        // Lista inicial de jugadores
+        const jugadores = [
+            { nombre: "LeBron James", equipo: "Lakers", puntos: 27.3 },
+            { nombre: "Stephen Curry", equipo: "Warriors", puntos: 25.5 },
+            { nombre: "Kevin Durant", equipo: "Nets", puntos: 29.1 }
+        ];
+
+        // Función para mostrar jugadores en la tabla
+        function mostrarJugadores() {
+            const tbody = document.querySelector("#nbaTable tbody");
+            tbody.innerHTML = ""; // Limpiar tabla
+            jugadores.forEach(jugador => {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td>${jugador.nombre}</td>
+                    <td>${jugador.equipo}</td>
+                    <td>${jugador.puntos}</td>
+                `;
+                tbody.appendChild(fila);
+            });
+        }
+
+        // Función para agregar un jugador nuevo
+        function agregarJugador() {
+            const nombre = prompt("Nombre del jugador:");
+            const equipo = prompt("Equipo:");
+            const puntos = parseFloat(prompt("Puntos por partido:"));
+            if(nombre && equipo && !isNaN(puntos)) {
+                jugadores.push({ nombre, equipo, puntos });
+                mostrarJugadores();
+            } else {
+                alert("Por favor, ingresa datos válidos.");
+            }
+        }
+
+        // Mostrar jugadores al cargar la página
+        mostrarJugadores();
+    </script>
+
+<link rel="stylesheet" href="estilos.css">
+
+</body>
+</html>
